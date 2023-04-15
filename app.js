@@ -17,12 +17,17 @@ app.get("/",(req,res)=>{
     res.render("home");
 });
 
+app.get("/githubInput",(req,res)=>{
+    res.render("githubInput");
+});
 
 //Github Resume and Portfolio
 
-app.get("/githubInput", async(req,res)=>{
+app.post("/githubGenerate", async(req,res)=>{
     
-    const userName = "kunal-kushwaha";
+    const userName = req.body.username;
+    const button = req.body.button;
+
     try{
         const {default:fetch} = await import("node-fetch");
 
@@ -64,22 +69,45 @@ app.get("/githubInput", async(req,res)=>{
 
         const orgData = await orgInfo.json();
 
-        
-
-        res.render("githubResume",{
-            name:data.name,
-            img_url:data.avatar_url,
-            bio:data.bio,
-            company:data.company,
-            username:data.login,
-            twitter_username: data.twitter_username,
-            email: data.email,
-            blog:data.blog,
-            location: data.location,
-            public_repos: data.public_repos,
-            organizations: orgData,
-            Projects:languagesData,
-        });
+        switch (button) {
+            case "resume":
+              // Generate resume page
+              res.render("githubResume",{
+                name:data.name,
+                img_url:data.avatar_url,
+                bio:data.bio,
+                company:data.company,
+                username:data.login,
+                twitter_username: data.twitter_username,
+                email: data.email,
+                blog:data.blog,
+                location: data.location,
+                public_repos: data.public_repos,
+                organizations: orgData,
+                Projects:languagesData,
+            });
+            break;
+            case "portfolio":
+              // View projects page
+              res.render("githubPortfolio", {
+                name:data.name,
+                img_url:data.avatar_url,
+                bio:data.bio,
+                company:data.company,
+                username:data.login,
+                twitter_username: data.twitter_username,
+                email: data.email,
+                blog:data.blog,
+                location: data.location,
+                public_repos: data.public_repos,
+                organizations: orgData,
+                Projects:languagesData,
+              });
+              break;
+            default:
+              res.send("Some error occurred, Try again!");
+          }
+       
         // res.send(data);
 
     } catch(error){
@@ -87,6 +115,25 @@ app.get("/githubInput", async(req,res)=>{
         console.log(error);
     }
 });
+
+// Linkedln Resume and Portfolio
+
+// const linkedin_access_token = process.env.LINKEDIN_ACCESS_TOKEN;
+
+// app.get("/linkedinInput", async(req,res)=>{
+//     const { default: fetch } = require('node-fetch');
+//     const linkedinData = await fetch('https://api.linkedin.com/v2/me', {
+//         headers: {
+//           'Authorization': `Bearer ${linkedin_access_token}`,
+//           'cache-control': 'no-cache',
+//           'X-Restli-Protocol-Version': '2.0.0'
+//         }
+//       });
+    
+//     const linkeData = await linkedinData.json();
+
+//     res.send(linkeData);
+// });
 
                                                                                                                                                                                  
 

@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Resume and Portfolio</title>
+    </head>
+    <body>
+        <h1 style="text-align: center;">PORTFOLIO</h1>
+        <h1>Name: <%= name %></h1>
+        <img src="<%= img_url %>" alt="Profile Picture">
+        <p>Summary</p>
+        <p><%= bio %></p>
+        <h2>Company : <%= company %></h2>
+
+        <p><strong>Contact Details</strong></p>
+        <a href="https://github.com/<%= username %>">Github</a>
+        <a href="https://twitter.com/<%= twitter_username %>">Twitter</a>
+        <a href="<%= blog %>">Portfolio</a>
+        <p><%= location %></p>
+        <p>Email: <%= email %></p>
+        <p>Public Repos: <%= public_repos %></p>
+
+        <p><strong>Organizations</strong></p>
+        <ul>
+        <% organizations.forEach(function(org){%>
+            <li>
+                <p><%= org.login %></p>
+                <p><%= org.description %></p>
+            </li>
+        <%});%>
+        </ul>
+
+        <p><strong>Projects</strong></p>
+        <ul>
+            <% Projects.forEach(function(proj){%>
+               <li>
+                <h1><%= proj.name %></h1>
+                <p><%= proj.description %></p>
+                <a href="<%= proj.html_url %>">Project Url</a>
+                <% Object.keys(proj.languages).forEach(function(lang) { %>
+                    <li><%= lang %></li>
+                <% }); %> 
+               </li>
+            <%});%> 
+        </ul>
+
+    </body>
+</html>

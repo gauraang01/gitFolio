@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= resume.name %>'s Portfolio</title>
+  </head>
+  <body>
+    <h1><%= resume.name %>'s Portfolio</h1>
+    <p>Name: <%= resume.name %></p>
+    <p>Email: <%= resume.email %></p>
+    <p>Skills:</p>
+    <ul>
+      <% resume.skills.forEach(skill => { %>
+        <li><%= skill %></li>
+      <% }) %>
+    </ul>
+    <!-- Render the other portfolio data fields here -->
+  </body>
+</html>

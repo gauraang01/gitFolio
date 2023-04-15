@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resumes</title>
+</head>
+<body>
+  <h1>Resumes</h1>
+  <ul>
+    <% for (const resume of resumes) { %>
+      <li><a href="/resumes/<%= resume._id %>"><%= resume.name %></a></li>
+    <% } %>
+  </ul>
+  <form method="POST" action="/resumes">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br>
+    <label for="skills">Skills:</label>
+    <input type="text" id="skills" name="skills"><br>
+    <button type="submit">Add Resume</button>
+  </form>
+</body>
+</html>

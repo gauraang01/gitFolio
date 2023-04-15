@@ -1,18 +1,16 @@
 const mongoose = require('mongoose');
 
 // Connect to MongoDB database
+const endpoint = 'mongodb'; // get the actual endpoint of your MongoDB container from OAM yaml
+const port = '27017';
+const databaseName = 'admin';
+const username = process.env.MONGO_INITDB_ROOT_USERNAME // change this to your MongoDB username
+const password = process.env.MONGO_INITDB_ROOT_PASSWORD; // change this to your MongoDB password
 
-// const username = process.env.MONGO_INITDB_ROOT_USERNAME;
-// const password = process.env.MONGO_INITDB_ROOT_PASSWORD;
-// const endpoint = 'mongodb:27017'; // change this to the actual endpoint of your MongoDB container
+const uri = `mongodb://${username}:${password}@${endpoint}:${port}/${databaseName}`;
 
-// const databaseName = 'myDatabase';
-// const uri = `mongodb://${username}:${password}@${endpoint}/${databaseName}`;
-
-
-// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
-mongoose.connect('mongodb://localhost:27017/resumeDB');
+console.log('Connecting to MongoDB database...' + uri);
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));

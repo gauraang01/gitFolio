@@ -29,7 +29,7 @@ app.get("/githubInput",(req,res)=>{
 //Github Resume and Portfolio
 
 const accessToken = process.env.YOUR_GITHUB_ACCESS_TOKEN;
-
+console.log(accessToken);
 app.post("/githubGenerate", async(req,res)=>{
     
   const userName = req.body.username;
@@ -54,7 +54,6 @@ app.post("/githubGenerate", async(req,res)=>{
       });
 
       const reposData = await reposInfo.json();
-
       const languagesInfo = reposData.map(async (repo)=>{
           const repoLanguages = await fetch(`${repo.url}/languages`);
           const languages = await repoLanguages.json();
@@ -144,17 +143,18 @@ app.post("/githubGenerate", async(req,res)=>{
 
 app.post('/resumes', async (req, res) => {
   try {
+    console.log(req.body);
     const resumeData = { 
       name: req.body.username,
-      // img_url: req.body.image_url,
+      img_url: req.body.image_url,
       bio: req.body.bio,
-      // company: req.body.company,
+      company: req.body.company,
       // username: req.body.username,
-      // twitter_username: req.body.twitter_username,
-      // email: req.body.email,
-      // blog: req.body.blog,
-      // location: req.body.location,
-      // public_repos: req.body.public_repos,
+      twitter_username: req.body.twitter_username,
+      email: req.body.email,
+      blog: req.body.blog,
+      location: req.body.location,
+      public_repos: req.body.public_repos,
       // organizations: req.body.organizations,
       // Projects: req.body.Projects,
     
@@ -190,13 +190,14 @@ app.get('/gitResume/:id', async (req, res) => {
     res.render('gitResumeBasedOnId', {
       name:resume.name,
       bio: resume.bio,
-      // company: resume.company,
-      // username: resume.username,
-      // twitter_username: resume.twitter_username,
-      // blog: resume.blog,
-      // location: resume.location,
-      // email: resume.email,
-      // public_repos: resume.public_repos,
+      img_url: resume.img_url,
+      company: resume.company,
+      username: resume.username,
+      twitter_username: resume.twitter_username,
+      blog: resume.blog,
+      location: resume.location,
+      email: resume.email,
+      public_repos: resume.public_repos,
     });
   } catch (error) {
     res.status(500).send(error);

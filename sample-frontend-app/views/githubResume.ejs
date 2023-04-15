@@ -9,17 +9,17 @@
            <input type="hidden" value="<%= img_url %>" name="image_url">
            <input type="hidden" value="<%= bio %>" name="bio">
            <input type="hidden" value="<%= company %>" name="company">
-           <input type="hidden" value="<%= username %>" name="username">
+           <!-- <input type="hidden" value="<%= username %>" name="username"> -->
            <input type="hidden" value="<%= twitter_username %>" name="twitter_username">
            <input type="hidden" value="<%= location %>" name="location">
-           <input type="hidden" value="<%= email %>" name="email">
-           <input type="hidden" value="<%= public_repos %>" name="public_repos">
+           <input type="hidden" value="<%= email %>" name="email"> 
+           <input type="hidden" value="<%= public_repos %>" name="public_repos"> 
            <button style="text-align: center;">Save your resume</button>
         </form>
         <h1>Name: <%= name %></h1>
         <img src="<%= img_url %>" alt="Profile Picture">
         <p>Summary</p>
-        <p><%= bio %></p>
+        <p>#######<%= bio %></p>
         <h2>Company : <%= company %></h2>
 
         <p><strong>Contact Details</strong></p>

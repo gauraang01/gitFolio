@@ -144,10 +144,24 @@ app.post("/githubGenerate", async(req,res)=>{
 
 app.post('/resumes', async (req, res) => {
   try {
-    const resumeData = { name: req.body.username };
+    const resumeData = { 
+      name: req.body.username,
+      // img_url: req.body.image_url,
+      bio: req.body.bio,
+      // company: req.body.company,
+      // username: req.body.username,
+      // twitter_username: req.body.twitter_username,
+      // email: req.body.email,
+      // blog: req.body.blog,
+      // location: req.body.location,
+      // public_repos: req.body.public_repos,
+      // organizations: req.body.organizations,
+      // Projects: req.body.Projects,
+    
+    };
     const response = await axios.post(`${serverUrl}/resumes`, resumeData);
     const savedResume = response.data;
-    res.send("Resume saved successfully!")
+    res.send("Resume saved successfully!");
   } catch (error) {
     res.status(500).send(error);
   }
@@ -167,12 +181,23 @@ app.get('/savedUsersData', async (req, res) => {
 });
 
 // Route for getting a resume by ID
-app.get('/resumes/:id', async (req, res) => {
+app.get('/gitResume/:id', async (req, res) => {
   const id = req.params.id;
   try {
     const response = await axios.get(`${serverUrl}/resumes/${id}`);
     const resume = response.data;
-    res.render('resume', { resume });
+    console.log(resume);
+    res.render('gitResumeBasedOnId', {
+      name:resume.name,
+      bio: resume.bio,
+      // company: resume.company,
+      // username: resume.username,
+      // twitter_username: resume.twitter_username,
+      // blog: resume.blog,
+      // location: resume.location,
+      // email: resume.email,
+      // public_repos: resume.public_repos,
+    });
   } catch (error) {
     res.status(500).send(error);
   }

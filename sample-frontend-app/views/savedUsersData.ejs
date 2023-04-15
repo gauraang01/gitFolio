@@ -6,7 +6,11 @@
         <h1 style="text-align: center;">Resumes</h1>
         <ul>
         <% resumes.forEach(function(resume){ %>
-            <li><%= resume.name %></li>
+            <li>
+                <a href="/gitResume/<%= resume._id %>">
+                  <%= resume.name %>
+                </a>
+            </li>
         <%});%>
         </ul>
     </body>

@@ -7,7 +7,7 @@
   <h1>Resumes</h1>
   <ul>
     <% for (const resume of resumes) { %>
-      <li><a href="/resumes/<%= resume._id %>"><%= resume.name %></a></li>
+      <li><a href="/resumes/<%= resume._id %>"><%= resume.name %></a> <%= resume._id %></li>
     <% } %>
   </ul>
   <form method="POST" action="/resumes">

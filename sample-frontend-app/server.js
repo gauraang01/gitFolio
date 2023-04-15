@@ -3,8 +3,8 @@ dotenv.config({ path: "./config.env" });
 
 const app = require("./app");
 
-const port = process.env.port || 8000;
+const port = process.env.port || 4000;
 
 app.main.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+  console.log(`Frontend server started on port ${port}`);
 });

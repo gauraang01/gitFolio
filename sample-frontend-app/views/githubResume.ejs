@@ -4,6 +4,10 @@
     </head>
     <body>
         <h1 style="text-align: center;">RESUME</h1>
+        <form method="post", action="/resumes">
+           <input type="hidden" value="<%= name %>" name="username">
+           <button style="text-align: center;">Save your resume</button>
+        </form>
         <h1>Name: <%= name %></h1>
         <img src="<%= img_url %>" alt="Profile Picture">
         <p>Summary</p>

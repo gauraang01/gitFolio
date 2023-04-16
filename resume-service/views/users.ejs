@@ -81,6 +81,8 @@
         <table style="margin-top: 5%">
           <tr>
             <th>Name</th>
+            <th>Resume</th>
+            <th>Portfolio</th>
             <th>Company</th>
             <th>Location</th>
           </tr>
@@ -88,9 +90,14 @@
             <% resumes.forEach(function(resume){ %>
             <tr>
               <td>
-                <a href="/gitResume/<%= resume._id %>">
                   <%= resume.name %>
-                </a>
+              </td>
+              <td>
+                <a href="/gitResume/<%= resume._id %>"> Resume</a>
+              </td>
+              <td>
+                
+                <a href="<%= resume.portfolio_url %>/portfolio/<%= resume._id %>"> Portfolio</a>
               </td>
               <td>
                 <%= resume.company %>

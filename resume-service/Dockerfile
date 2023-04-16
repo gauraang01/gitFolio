@@ -13,6 +13,8 @@ COPY . .
 
 # Set environment variables
 ENV DB_SERVER_URL=http://localhost:3000
+ENV PORTFOLIO_SERVER_URL=http://localhost:7000
+ENV YOUR_GITHUB_ACCESS_TOKEN = 
 ENV PORT=4000
 
 # Expose port

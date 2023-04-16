@@ -1,6 +1,14 @@
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 
+const k8s = require('@kubernetes/client-node');
+const kubeConfig = new k8s.KubeConfig();
+kubeConfig.loadFromDefault();
+const k8sApi = kubeConfig.makeApiClient(k8s.CoreV1Api);
+
+
+
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -13,10 +21,30 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(bodyParser.json());
 
-const serverName = process.env.DB_SERVER_URL || "http://localhost:3000";
-const serverUrl = serverName.startsWith("http")
-  ? serverName
-  : `http://${serverName}:3000`;
+const dbServerName = process.env.DB_SERVER_URL || "http://localhost:3000";
+const serverUrl = dbServerName.startsWith("http")
+  ? dbServerName
+  : `http://${dbServerName}:3000`;
+
+const portfolioServerName = process.env.PORTFOLIO_SERVER_URL || "http://localhost:7000";
+let portfolioServerUrl = "";
+if(portfolioServerName.startsWith("http")){
+  console.log("portfolioServerNamehttp", portfolioServerName);
+  portfolioServerUrl = portfolioServerName;
+}else{
+  const getPortfolioServerUrl = async () => {
+    const namespace = 'default'; // Replace with the actual namespace
+    const service = await k8sApi.readNamespacedService(portfolioServerName, namespace);
+
+    const portfolioServiceIP = service.body.spec.clusterIP;
+    const portfolioServicePort = service.body.spec.ports[0].port;
+    portfolioServerUrl = `http://${portfolioServiceIP}:${portfolioServicePort}`;
+    console.log("portfolioServerUrl", portfolioServerUrl);
+  };
+  getPortfolioServerUrl();
+}
+
+
 
 app.get("/", (req, res) => {
   res.render("home");
@@ -29,8 +57,8 @@ app.get("/githubInput", (req, res) => {
 //Github Resume and Portfolio
 
 const accessToken = process.env.YOUR_GITHUB_ACCESS_TOKEN;
-console.log(accessToken);
-app.post("/githubGenerate", async (req, res) => {
+
+app.post("/githubData", async (req, res) => {
   const userName = req.body.username;
   const button = req.body.button;
 
@@ -166,7 +194,6 @@ app.post("/resumes", async (req, res) => {
       // Projects: req.body.Projects,
     };
     const response = await axios.post(`${serverUrl}/resumes`, resumeData);
-    const savedResume = response.data;
     res.send("Resume saved successfully!");
   } catch (error) {
     res.status(500).send(error);
@@ -174,11 +201,12 @@ app.post("/resumes", async (req, res) => {
 });
 
 // Route for getting all resumes
-app.get("/savedUsersData", async (req, res) => {
+app.get("/users", async (req, res) => {
   try {
     const response = await axios.get(`${serverUrl}/resumes`);
-    const resumes = response.data;
-    res.render("savedUsersData", {
+    let resumes = response.data;
+    resumes = resumes.map(resume => ({...resume, portfolio_url: portfolioServerUrl}));
+    res.render("users", {
       resumes: resumes,
     });
   } catch (error) {
@@ -192,7 +220,6 @@ app.get("/gitResume/:id", async (req, res) => {
   try {
     const response = await axios.get(`${serverUrl}/resumes/${id}`);
     const resume = response.data;
-    console.log(resume);
     res.render("gitResumeBasedOnId", {
       name: resume.name,
       bio: resume.bio,
@@ -210,14 +237,5 @@ app.get("/gitResume/:id", async (req, res) => {
   }
 });
 
-// Route for posting a resume
-app.post("/resumes", async (req, res) => {
-  try {
-    const response = await axios.post(`${serverUrl}/resumes`, req.body);
-    res.redirect("/resumes");
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
 
 module.exports.main = app;

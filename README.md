@@ -106,8 +106,8 @@ Overall, our web application provides users with a convenient and efficient way 
 
 
 # Conclusion
-In conclusion, the GitHub Resume and Portfolio Generator is a powerful tool that offers an efficient and convenient way for GitHub users to showcase their skills and accomplishments. The web-based application is designed with a user-friendly interface that allows users to generate their professional documents with just a few clicks.
+In conclusion, the **gitFolio** is a powerful tool that offers an efficient and convenient way for GitHub users to showcase their skills and accomplishments. The web-based application is designed with a user-friendly interface that allows users to generate their professional documents with just a few clicks.
 
-With the application deployed on the Napptive platform using OAM YAML files, it ensures optimal performance and scalability of the different microservices. The use of microservices ensures that each function of the application is handled by a dedicated service, making the application efficient and easy to manage.
+With the application deployed on the **Napptive platform** using **OAM YAML files**, it ensures optimal performance and scalability of the different microservices. The use of microservices ensures that each function of the application is handled by a dedicated service, making the application efficient and easy to manage.
 
-Overall, the GitHub Resume and Portfolio Generator is a valuable resource for anyone looking to highlight their skills and achievements in a professional setting. With its user-friendly interface and efficient performance, the application is a great tool for job seekers, freelancers, and other professionals looking to enhance their online presence.
+Overall, the **gitFolio** is a valuable resource for anyone looking to highlight their skills and achievements in a professional setting. With its user-friendly interface and efficient performance, the application is a great tool for job seekers, freelancers, and other professionals looking to enhance their online presence.

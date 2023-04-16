@@ -1,17 +1,108 @@
-<html>
-    <head>
-        <title>Resume and Portfolio</title>
-    </head>
-    <body>
-        <h1 style="text-align: center;">Resumes</h1>
-        <ul>
-        <% resumes.forEach(function(resume){ %>
-            <li>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume and Portfolio</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      td,
+      th {
+        border: 1px solid #93BFCF;
+        text-align: left;
+        padding: 8px;
+      }
+      tr:nth-child(even) {
+        background-color: #f6f1e9;
+      }
+    </style>
+  </head>
+  <body class="font-mono bg-gray-400">
+    <nav
+      x-data="{show:false}"
+      class="flex items-center justify-between flex-wrap bg-gray-600 p-6"
+    >
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <span class="font-semibold text-xl tracking-tight">Resume and Portfolio</span>
+      </div>
+      <div class="block md:hidden">
+        <button
+          @click="show=!show"
+          class="flex items-center px-3 py-2 border rounded text-gray-100 border-gray-200 hover:text-white hover:border-white"
+        >
+          <svg
+            class="fill-current h-3 w-3"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+      </div>
+      <div
+        @click.away="show = false"
+        :class="{ 'block': show, 'hidden': !show }"
+        class="w-full block flex-grow md:flex md:justify-end md:w-auto"
+      >
+        <div>
+          <a
+            href="/"
+            class="block md:inline-block text-lg px-4 py-2 leading-none rounded text-orange border-white hover:border-transparent bg-white mt-4 md:mt-0"
+            >Home</a
+          >
+        </div>
+      </div>
+    </nav>
+    <div
+      style="
+        text-align: center;
+        margin-top: 20px;
+        font-size: larger;
+        font-weight: 600;
+        color: #B7B7B7;
+      "
+    >
+      <h1 style="font-size: 50px">If you would like to view other resumes, simply click on the individual's name.</h1>
+    </div>
+    <div>
+    
+      <div id="result">
+        <table style="margin-top: 5%">
+          <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Location</th>
+          </tr>
+          <tbody id="table_body">
+            <% resumes.forEach(function(resume){ %>
+            <tr>
+              <td>
                 <a href="/gitResume/<%= resume._id %>">
                   <%= resume.name %>
                 </a>
-            </li>
-        <%});%>
-        </ul>
-    </body>
+              </td>
+              <td>
+                <%= resume.company %>
+              </td>
+              <td>
+                <%= resume.location %>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
 </html>

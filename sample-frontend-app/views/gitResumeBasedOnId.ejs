@@ -1,28 +1,210 @@
-<html>
-    <head>
-        <title>Resume and Portfolio</title>
-    </head>
-    <body>
-        <h1 style="text-align: center;">Resume</h1>
-        <h1>Name: <%= name %></h1>
-        <p>Summary</p>
-        <p><%= public_repos %></p>
-        <h1>Name: <%= name %></h1>
-        <img src="<%= img_url %>" alt="Profile Picture">
-        <p>Summary</p>
-        <p>#######<%= bio %></p>
-        <h2>Company : <%= company %></h2>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume and Portfolio</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px #888888;
+        margin: 30px auto;
+      }
+      .left-side {
+        flex-basis: 30%;
+        margin-right: 50px;
+        background-color: #F5F5F5;
+        padding: 25px;
+        border: solid #000000;
+      }
+      .right-side {
+        flex-basis: 65%;
+      }
+      h1,
+      h2 {
+        margin: 0;
+        padding: 0;
+      }
+      p {
+        margin-top: 0;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+      .skills li {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        padding: 5px;
+        background-color: #d9d9d9;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .profile-image {
+        width: 100%;
+        height: auto;
+        border-radius: 100%;
+        margin-bottom: 20px;
+        box-shadow: 0px 0px 10px #F1EFDC;
+      }
+      a:hover{
+        color: blue;
+      }
+    </style>
+    <link href="/css/styles.css" rel="stylesheet" />
+  </head>
+  <body class="font-mono bg-gray-400">
+    <nav
+      x-data="{show:false}"
+      class="flex items-center justify-between flex-wrap bg-gray-600 p-6"
+    >
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <span class="font-semibold text-xl tracking-tight">Resume and Portfolio</span>
+      </div>
+      <div class="block md:hidden">
+        <button
+          @click="show=!show"
+          class="flex items-center px-3 py-2 border rounded text-gray-100 border-gray-200 hover:text-white hover:border-white"
+        >
+          <svg
+            class="fill-current h-3 w-3"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+      </div>
+      <div
+        @click.away="show = false"
+        :class="{ 'block': show, 'hidden': !show }"
+        class="w-full block flex-grow md:flex md:justify-end md:w-auto"
+      >
+        <div>
+          <!-- <a href="#" class="block md:inline-block text-lg px-4 py-2 leading-none rounded text-white border-white hover:border-transparent hover:text-orange-500 hover:bg-white mt-4 md:mt-0">Compose Post</a> -->
+          <!-- <a href="/planMeals" class="block md:inline-block text-lg px-4 py-2 leading-none rounded text-white border-white hover:border-transparent hover:text-orange-500 hover:bg-white mt-4 md:mt-0">Dashboard</a> -->
+          <a
+            href="/"
+            class="block md:inline-block text-lg px-4 py-2 leading-none rounded text-orange border-white hover:border-transparent bg-white mt-4 md:mt-0"
+            >Home</a
+          >
+        </div>
+      </div>
+    </nav>
 
-        <p><strong>Contact Details</strong></p>
-        <a href="https://github.com/<%= username %>">Github</a>
-        <a href="https://twitter.com/<%= twitter_username %>">Twitter</a>
-        <a href="<%= blog %>">Portfolio</a>
-        <p><%= location %></p>
-        <p>Email: <%= email %></p>
-        <p>Public Repos: <%= public_repos %></p>
+    <!-- Information Display to user -->
 
-        
+    <div class="flex flex-col items-center justify-start">
 
-        
-    </body>
+      <button
+        id="downloadBtn"
+        class="bg-blue-400 hover:bg-blue-700 text-white font-semibold py-2 px-4 ml-500 p-3 mt-3 rounded focus:outline-none focus:shadow-outline"
+        style="display: inline-block"
+      >
+        Download as PDF
+      </button>
+
+
+      <div class="container" id="resume">
+        <div class="left-side">
+          <img src="<%= img_url %>" alt="Profile Image" class="profile-image" />
+          <h1><strong><%= name %></strong></h1>
+          <h2><strong>Company: <%= company %></strong></h2>
+          <h2><strong>Public Repos: <%= public_repos %></strong></h2>
+          <h2><strong>Contact Details</strong></h2>
+          <ul class="skills">
+            <li>
+              <p>
+                <a href="https://github.com/<%= username %>">Github</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a href="https://twitter.com/<%= twitter_username %>">Twitter</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                <a href="<%= blog %>">Portfolio</a>
+              </p>
+            </li>
+            <li>
+              <p>
+               <%= email %>
+              </p>
+            </li>
+            <li>
+              <p>
+                <%= location %>
+              </p>
+            </li>
+            
+          </ul>
+        </div>
+        <div class="right-side">
+          <h1>
+            <strong><u>Summary</u></strong>
+          </h1>
+          <br />
+          <p><%= bio %>.</p>
+          <br />
+          <h2>
+            <strong><u>Projects</u></strong>
+          </h2>
+          <br />
+          
+          <br />
+          <h3>
+            <strong><u>Experience</u></strong>
+          </h3>
+          <br />
+    
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      useCORS: true;
+      window.onload = function () {
+        const btn = document.getElementById("downloadBtn");
+        btn.addEventListener("click", () => {
+          const resume = this.document.getElementById("resume");
+          const options = {
+            margin: 0,
+            filename: "resume.pdf",
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { format: "letter", orientation: "landscape" },
+          };
+          html2pdf().from(resume).set(options).save();
+        });
+      };
+    </script>
+  </body>
 </html>

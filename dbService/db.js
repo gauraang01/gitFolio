@@ -9,7 +9,7 @@ const databaseName = 'admin';
 
 // const uri = `mongodb://${username}:${password}@${endpoint}:${port}/${databaseName}`;
 
-const uri = "mongodb://localhost:27017/news1resumeDB";
+const uri = "mongodb://localhost:27017/jkresumeDB";
 
 console.log('Connecting to MongoDB database...' + uri);
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });

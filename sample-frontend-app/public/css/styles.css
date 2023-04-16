@@ -1,0 +1,133 @@
+body * {
+
+    font-family: 'Montserrat', sans-serif;
+}
+.homeBody {
+    min-height: 100svh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366__480.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 30%;
+    background-attachment: fixed;
+}
+h3.homeTitle {
+    color: white;
+    font-size: 3rem;
+    animation: slidein 1.5s;
+    
+}
+.optionsWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    gap: 150px;
+}
+.menuWrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    gap: 100px;
+}
+.component {
+    transition: .2s;
+    height: 200px;
+    width: 200px;
+    border: 5px solid white;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 50px;
+    z-index: 2;
+}
+.component:hover {
+    transition: .2s;
+    transform: scale(1.5);
+    border-radius: 15px;
+}
+.component:hover .textBackground {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.weeklyMenu {
+    background-image: url("https://images.unsplash.com/photo-1618401479427-c8ef9465fbe1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1143&q=80");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: weeklyMenuAnimation 1.2s;
+}
+.inFridge {
+    background-image: url("https://images.unsplash.com/photo-1611944212129-29977ae1398c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: fridge 1.2s;
+}
+.somethingNew {
+    background-image: url("https://c8.alamy.com/zooms/9/1dd412de345047758eb9029002dc8ee4/warp8t.jpg");
+    background-position: center 80%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: somethingNew 1.2s;
+}
+.textBackground {
+    transition: .2s;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+.navShadow {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    animation: moveup .5s;
+}
+
+@keyframes moveup {
+    0% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+@keyframes weeklyMenuAnimation {
+    0% {
+        transform: translateX(-300px) translateY(500px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes fridge {
+    0% {
+        transform: translateY(500px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes somethingNew {
+    0% {
+        transform: translateX(300px) translateY(500px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .menuWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .component {
+        height: 300px;
+        width: 300px;
+    }
+}

@@ -19,3 +19,9 @@ Steps to follow to contribute to the project
    ```
    npm start
    ```
+8. Start the db-service, and portfolio-service
+9. Move to respective directory and run:
+```
+   npm install
+   npm start
+```

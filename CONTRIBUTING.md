@@ -7,9 +7,15 @@ Steps to follow to contribute to the project
    npm install
    ```
 
-3. Create a file named `config.env` in the root directory of the project
-4. Copy contents of `config.copy.env` to `config.env` and replace all the environment variables
-5. To start the server run
+3. Navigate into the **resume-service** folder by running
+
+   ```
+   cd resume-service
+   ```
+  
+5. Create a file named `config.env` in the root directory of the project
+6. Copy contents of `config.copy.env` to `config.env` and replace all the environment variables
+7. To start the server run
    ```
    npm start
    ```

@@ -10,13 +10,13 @@ description: "This application is for deploying microservices based Application 
 # Related keywords for SEO.
 keywords:
   - "nodejs"
-  - "mongodb"
+  - "mongodb"A
   - "Database"
   - "microservicces"
   - "portfolio"
   - "resume"
 # Provide license
-license: "Apache License Version 2.0"
+license: "MIT License Version"
 # url and doc
 url: "https://github.com/zigbee-s/hackathon-microsevices-resume"
 doc: "https://github.com/zigbee-s/hackathon-microsevices-resume/blob/main/README.md"

@@ -1,0 +1,24 @@
+apiVersion: core.napptive.com/v1alpha1
+# Required
+kind: ApplicationMetadata
+# Specifies name for the application
+name: "gitfolio"
+# Version of your application
+version: 1.0
+# Short description for your application
+description: "This application is for deploying microservices based Application gitfolio"
+# Related keywords for SEO.
+keywords:
+  - "nodejs"
+  - "mongodb"
+  - "Database"
+  - "microservicces"
+  - "portfolio"
+  - "resume"
+# Provide license
+license: "Apache License Version 2.0"
+# url and doc
+url: "https://github.com/zigbee-s/hackathon-microsevices-resume"
+doc: "https://github.com/zigbee-s/hackathon-microsevices-resume/blob/main/README.md"
+
+

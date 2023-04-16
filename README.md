@@ -5,7 +5,7 @@
 Our web-based application is an innovative tool that makes it easy for GitHub users to create a professional **Resume** and **Portfolio** based on their GitHub profile. By simply entering their username, the application generates a visually appealing overview of their skills, achievements, and projects. Deployed on the Napptive platform, the application uses OAM YAML files and multiple microservices to ensure optimal performance and scalability.
 
 - Resume Service link: https://resume-service-4000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/
-- Your portfolio link: https://portfolio-service-7000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/portfolio/<ID FROM RESUME>
+- Your portfolio link: https://portfolio-service-7000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/portfolio/ `ID FROM RESUME`
 
 [ For example: https://portfolio-service-7000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/portfolio/643bca173efcdd32a94a326c	]
 

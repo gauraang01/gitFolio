@@ -7,6 +7,8 @@ Our web-based application is an innovative tool that makes it easy for GitHub us
 - Resume Service link: https://resume-service-4000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/
 - Your portfolio link: https://portfolio-service-7000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/portfolio/<ID FROM RESUME>
 
+[ For example: https://portfolio-service-7000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/portfolio/643bca173efcdd32a94a326c	]
+
 # Services
 
 
@@ -25,6 +27,25 @@ The portfolio-service has an endpoint URL of /portfolio/id, which fetches data f
 
 # Deployment
 The application is deployed on the **Napptive platform** using OAM YAML files, which define the different microservices and their configurations. The services are deployed as separate containers, with the **resume-service** and **portfolio-service** being exposed to the outside world.
+
+## Depoyment steps on napptive
+1. Open napptive UI application
+2. Go to your environment
+3. Click on Deploy app button at the top left
+4. Select YAML file option
+5. Copy paste the text inside napptive/gitfolio.app.yaml file
+6. Edit your Github access token in env configuration for resume-service component
+7. Click on deploy, and follow steps
+
+## Deployment steps for Local Development
+1. Clone the repo
+2. Open The db-service, portfolio-sevice, resume-service directories in different terminals
+3. In the resume-service create a config.env file and add YOUR_GITHUB_ACESS_TOKEN
+4. In all he directories run
+```
+  npm install
+  npm start
+``` 
 
 # Representation
 ```

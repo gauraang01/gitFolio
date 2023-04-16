@@ -1,7 +1,7 @@
 apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
-  name: microservice
+  name: gitfolio
   namespace: default
   annotations:
     version: "latest"

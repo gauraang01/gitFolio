@@ -1,14 +1,14 @@
 # gitFolio 
 Our web-based application is an innovative tool that makes it easy for GitHub users to create a professional **Resume** and **Portfolio** based on their GitHub profile. By simply entering their username, the application generates a visually appealing overview of their skills, achievements, and projects. Deployed on the Napptive platform, the application uses OAM YAML files and multiple microservices to ensure optimal performance and scalability.
 
-- Resume Service link: <resume-service endpoint>
-- Your portfolio link: <portfolio-service endpoint>/portfolio/<Your_ID>
+- Resume Service link: [resume-service endpoint]
+- Your portfolio link: [portfolio-service endpoint]/portfolio/[Your_ID]
 
 [ For example: 
 https://portfolio-service-7000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/portfolio/643bca173efcdd32a94a326c	
 ]
 
-# Note: 
+# IMPORTANT (warning): 
 Ensure that before deploying you provide YOUR_GITHUB_ACCESS_TOKEN in env configuration for resume-service component in yaml file
 
 # Docker images

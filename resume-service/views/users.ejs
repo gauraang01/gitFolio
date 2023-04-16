@@ -81,6 +81,7 @@
         <table style="margin-top: 5%">
           <tr>
             <th>Name</th>
+            <th>Id</th>
             <th>Resume</th>
             <th>Portfolio</th>
             <th>Company</th>
@@ -93,11 +94,14 @@
                   <%= resume.name %>
               </td>
               <td>
+                <%= resume._id %>
+              </td>
+              <td>
                 <a href="/gitResume/<%= resume._id %>"> Resume</a>
               </td>
               <td>
                 
-                <a href="<%= resume.portfolio_url %>/portfolio/<%= resume._id %>"> Portfolio</a>
+                <a href="/portfolio/<%= resume._id %>"> Portfolio</a>
               </td>
               <td>
                 <%= resume.company %>

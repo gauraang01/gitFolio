@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume and Portfolio</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+      }
+
+      nav {
+        background-color: #f4f4f4;
+        padding: 10px;
+        text-align: center;
+      }
+
+      nav a {
+        color: #333;
+        text-decoration: none;
+        padding: 10px;
+      }
+
+      section {
+        margin: 20px;
+        text-align: center;
+      }
+
+      h2 {
+        color: #333;
+        font-size: 2em;
+        margin: 0;
+        padding: 10px;
+      }
+
+      p {
+        color: #666;
+        font-size: 1.2em;
+        line-height: 1.5;
+        margin: 0;
+        padding: 10px;
+      }
+
+      .image{
+        margin: 15px auto;
+        border-radius: 100%;
+        border: solid #787A91;
+      }
+
+      .skills {
+        /* display: flex;
+        flex-wrap: wrap; */
+        margin-top: 10px;
+      }
+      .skills li {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        padding: 5px;
+        background-color: #d9d9d9;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      a:hover{
+          color:white;
+      }
+
+      footer {
+         background-color: #333;
+         margin-top: 100px;
+         padding: 50px 0 20px;
+        /* padding: 20px; */
+      }
+    </style>
+    <link href="/css/styles.css" rel="stylesheet" />
+    </head>
+  <body class="font-mono bg-gray-400">
+    <nav
+      x-data="{show:false}"
+      class="flex items-center justify-between flex-wrap bg-gray-600 p-6"
+    >
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <span class="font-semibold text-xl tracking-tight">Resume and Portfolio</span>
+      </div>
+      <div class="block md:hidden">
+        <button
+          @click="show=!show"
+          class="flex items-center px-3 py-2 border rounded text-gray-100 border-gray-200 hover:text-white hover:border-white"
+        >
+          <svg
+            class="fill-current h-3 w-3"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+      </div>
+      <div
+        @click.away="show = false"
+        :class="{ 'block': show, 'hidden': !show }"
+        class="w-full block flex-grow md:flex md:justify-end md:w-auto"
+      >
+        <div>
+          <!-- <a href="#" class="block md:inline-block text-lg px-4 py-2 leading-none rounded text-white border-white hover:border-transparent hover:text-orange-500 hover:bg-white mt-4 md:mt-0">Compose Post</a> -->
+          <!-- <a href="/planMeals" class="block md:inline-block text-lg px-4 py-2 leading-none rounded text-white border-white hover:border-transparent hover:text-orange-500 hover:bg-white mt-4 md:mt-0">Dashboard</a> -->
+        </div>
+      </div>
+    </nav>
+
+    <header>
+      <h1>My Portfolio</h1>
+      <p>Welcome to my portfolio website</p>
+    </header>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about">
+      <h2>About Me</h2>
+        <h1><strong><%= name %></strong></h1>
+        <img class="image" src="<%= img_url %>" alt="Profile Picture">
+        <p><%= bio %></p>
+        <h2>Company : <%= company %></h2>
+    </section>
+    <hr>
+   
+    <hr>
+
+
+<footer>
+    <section id="contact">
+      <!-- <h2>Contact Me</h2> -->
+      <a href="https://github.com/<%= username %>" clas="link">Github</a>
+        <a href="https://twitter.com/<%= twitter_username %>">Twitter</a>
+        <a href="<%= blog %>">Portfolio</a>
+        <p><%= location %></p>
+        <p>Email: <%= email %></p>
+        <!-- <p>Public Repos: <%= public_repos %></p> -->
+
+    </section>
+</footer>
+
+</body>
+
+</html>

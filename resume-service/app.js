@@ -1,10 +1,10 @@
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 
-const k8s = require('@kubernetes/client-node');
-const kubeConfig = new k8s.KubeConfig();
-kubeConfig.loadFromDefault();
-const k8sApi = kubeConfig.makeApiClient(k8s.CoreV1Api);
+// const k8s = require('@kubernetes/client-node');
+// const kubeConfig = new k8s.KubeConfig();
+// kubeConfig.loadFromDefault();
+// const k8sApi = kubeConfig.makeApiClient(k8s.CoreV1Api);
 
 
 
@@ -26,23 +26,15 @@ const serverUrl = dbServerName.startsWith("http")
   ? dbServerName
   : `http://${dbServerName}:3000`;
 
-const portfolioServerName = process.env.PORTFOLIO_SERVER_URL || "http://localhost:7000";
-let portfolioServerUrl = "";
-if(portfolioServerName.startsWith("http")){
-  console.log("portfolioServerNamehttp", portfolioServerName);
-  portfolioServerUrl = portfolioServerName;
-}else{
-  const getPortfolioServerUrl = async () => {
-    const namespace = 'default'; // Replace with the actual namespace
-    const service = await k8sApi.readNamespacedService(portfolioServerName, namespace);
+// const portfolioServerName = process.env.PORTFOLIO_SERVER_URL || "http://localhost:7000";
+// let portfolioServerUrl = "";
+// if(portfolioServerName.startsWith("http")){
+//   console.log("portfolioServerNamehttp", portfolioServerName);
+//   portfolioServerUrl = portfolioServerName;
+// }else{
+//     portfolioServerUrl  = 'https://portfolio-service-7000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev'
+// };
 
-    const portfolioServiceIP = service.body.spec.clusterIP;
-    const portfolioServicePort = service.body.spec.ports[0].port;
-    portfolioServerUrl = `http://${portfolioServiceIP}:${portfolioServicePort}`;
-    console.log("portfolioServerUrl", portfolioServerUrl);
-  };
-  getPortfolioServerUrl();
-}
 
 
 
@@ -205,7 +197,7 @@ app.get("/users", async (req, res) => {
   try {
     const response = await axios.get(`${serverUrl}/resumes`);
     let resumes = response.data;
-    resumes = resumes.map(resume => ({...resume, portfolio_url: portfolioServerUrl}));
+    // resumes = resumes.map(resume => ({...resume, portfolio_url: portfolioServerUrl}));
     res.render("users", {
       resumes: resumes,
     });
@@ -237,5 +229,27 @@ app.get("/gitResume/:id", async (req, res) => {
   }
 });
 
+app.get('/portfolio/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const response = await axios.get(`${serverUrl}/resumes/${id}`);
+    const data = response.data;
+    console.log(data);
+    res.render("portfolio", {
+      name: data.name,
+      img_url: data.img_url,
+      bio: data.bio,
+      company: data.company,
+      username: data.login,
+      twitter_username: data.twitter_username,
+      email: data.email,
+      blog: data.blog,
+      location: data.location,
+      public_repos: data.public_repos,
+    });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 module.exports.main = app;

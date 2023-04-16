@@ -1,0 +1,87 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: microservice
+  namespace: default
+  annotations:
+    version: "latest"
+    description: "Deploying Gitfolio microservice application"
+spec:
+  components:
+  - name: mongodb
+    type: webservice
+    properties:
+      image: mongo:latest
+      ports:
+        - port: 27017
+          expose: true
+      env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "user"
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "password"
+  - name: db-service
+    type: webservice
+    properties:
+      image: gauraangs/db-service:latest
+      ports:
+        - port: 3000
+          expose: true
+      env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: "user"
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: "password"
+  - name: portfolio-service
+    type: webservice
+    properties:
+      image: gauraangs/portfolio-service:latest
+      ports:
+        - port: 7000
+          expose: true
+      env:
+        - name: DB_SERVER_URL
+          value: "db-service" # Specify the hostname of the dbService component
+    traits:
+      - type: napptive-ingress # A napptive-ingress trait to get a public endpoint
+        properties:
+          port: 7000
+          path: /
+  - name: resume-service
+    type: webservice
+    properties:
+      image: gauraangs/resume-service:latest
+      ports:
+        - port: 4000
+          expose: true
+      env:
+        - name: DB_SERVER_URL
+          value: "db-service" # Specify the hostname of the dbService component
+        - name: PORTFOLIO_SERVER_URL
+          value: "portfolio-service"
+        - name: YOUR_GITHUB_ACCESS_TOKEN
+          value: "<YOUR ACCESS TOKEN>"
+    traits:
+      - type: napptive-ingress # A napptive-ingress trait to get a public endpoint
+        properties:
+          port: 4000
+          path: /
+  workflow:
+    steps:
+      - name: step1
+        type: apply-component
+        properties:
+          component: mongodb
+      - name: step2
+        type: apply-component
+        properties:
+          component: db-service
+      - name: step3
+        type: apply-component
+        properties:
+          component: portfolio-service
+      - name: step4
+        type: apply-component
+        properties:
+          component: resume-service
+

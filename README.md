@@ -14,8 +14,13 @@ https://portfolio-service-7000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/
 # Note: 
 Ensure that before deploying you provide YOUR_GITHUB_ACCESS_TOKEN in env configuration for resume-service component in yaml file
 
-# Services
+# Docker images
+- mongodb: ```mongo:latest```
+- db-service: ```gauraangs/db-service:latest```
+- portfolio-service: ```gauraangs/portfolio-service:latest```
+- resume-service: ```gauraangs/resume-service:latest```
 
+# Services
 ## resume-service
 The resume-service is the central service of the application. Users can go to this service and provide their GitHub username to generate a **Resume** and **Portfolio**. This service is exposed to the outside world.
 

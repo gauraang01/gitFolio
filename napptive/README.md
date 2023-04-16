@@ -4,11 +4,20 @@ Our web-based application is an innovative tool that makes it easy for GitHub us
 - Resume Service link: <resume-service endpoint>
 - Your portfolio link: <portfolio-service endpoint>/portfolio/<Your_ID>
 
-[ For example: https://portfolio-service-7000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/portfolio/643bca173efcdd32a94a326c	]
+[ For example: 
+https://portfolio-service-7000-cgnffcjh51taq9hpjhng.apps.hackathon.napptive.dev/portfolio/643bca173efcdd32a94a326c	
+]
+
+# Note: 
+Ensure that before deploying you provide YOUR_GITHUB_ACCESS_TOKEN in env configuration for resume-service component in yaml file
+
+# Docker images
+- mongodb: ```mongo:latest```
+- db-service: ```gauraangs/db-service:latest```
+- portfolio-service: ```gauraangs/portfolio-service:latest```
+- resume-service: ```gauraangs/resume-service:latest```
 
 # Services
-
-
 ## resume-service
 The resume-service is the central service of the application. Users can go to this service and provide their GitHub username to generate a **Resume** and **Portfolio**. This service is exposed to the outside world.
 
@@ -21,19 +30,13 @@ The MongoDB is the database used by the dbService to store user data.
 ## portfolio-service
 The portfolio-service has an endpoint URL of /portfolio/id, which fetches data from the db-service and generates a portfolio for the user. This service is accessible by the external world.
 
-
 # Deployment
 The application is deployed on the **Napptive platform** using OAM YAML files, which define the different microservices and their configurations. The services are deployed as separate containers, with the **resume-service** and **portfolio-service** being exposed to the outside world.
 
 ## Depoyment steps on napptive
-1. Open napptive UI application
-2. Go to your environment
-3. Click on Deploy app button at the top left
-4. Select YAML file option
-5. Copy paste the text inside napptive/gitfolio.app.yaml file
-6. Edit your Github access token in env configuration for resume-service component
-7. Click on deploy, and follow steps
-
+1. Click on the deploy 
+2. Provide YOUR_GITHUB_ACCESS_TOKEN in env configuration for resume-service component in yaml file
+3. Deploy to your environment
 
 # Representation
 ```
